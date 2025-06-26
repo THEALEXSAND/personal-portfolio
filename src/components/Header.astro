@@ -1,0 +1,105 @@
+<header
+	id="header"
+	class="h-[var(--headerHeight)] px-7 fixed top-0 left-0 right-0 z-10"
+>
+	<div class="max-w-5xl h-full mx-auto flex justify-between items-center">
+		<div>
+			<h1 class="text-2xl text-[#9850d3] font-medium">AS</h1>
+		</div>
+		<nav>
+			<ul class="flex [&>li>a]:px-4 [&>li>a]:py-2">
+				<li>
+					<a
+						class="text-sm transition-colors duration-300 hover:text-[#9850d3]"
+						href="/#">Inicio</a
+					>
+				</li>
+				<li>
+					<a
+						class="text-sm transition-colors duration-300 hover:text-[#9850d3]"
+						href="#about">Sobre mi</a
+					>
+				</li>
+				<li>
+					<a
+						class="text-sm transition-colors duration-300 hover:text-[#9850d3]"
+						href="#skill">Habilidades</a
+					>
+				</li>
+				<li>
+					<a
+						class="text-sm transition-colors duration-300 hover:text-[#9850d3]"
+						href="#hobbies">Pasatiempos</a
+					>
+				</li>
+			</ul>
+		</nav>
+		<div>
+			<button id="menu"><i class="fa-solid fa-bars"></i></button>
+		</div>
+	</div>
+
+	<div
+		id="menu-backdrop"
+		class="absolute -z-[1] opacity-0 rounded bg-white/10 backdrop-blur-xs translate-x-[var(--left)] translate-y-[var(--top)] w-[var(--width)] h-[var(--height)] top-0 left-0 transition-all duration-500 ease-in-out"
+	>
+	</div>
+
+	<!-- <aside class="header__sidebar">
+<ul>
+    <li><a href="#">Inicio</a></li>
+    <li><a href="#about">Sobre mi</a></li>
+    <li><a href="#skill">Habilidades</a></li>
+    <li><a href="#hobbies">Pasatiempos</a></li>
+</ul>
+</aside> -->
+</header>
+
+<script>
+	const $header = document.querySelector("header") as HTMLElement;
+
+	const $navItems = document.querySelectorAll(
+		"#header li a"
+	) as NodeListOf<HTMLElement>;
+	const $menuBackdrop = document.getElementById("menu-backdrop") as HTMLElement;
+
+	$navItems.forEach((item) => {
+		item.addEventListener("mouseenter", ({ target }) => {
+			const { left, top, width, height } = (
+				target as HTMLElement
+			).getBoundingClientRect();
+
+			$menuBackdrop.style.setProperty("--left", `${left}px`);
+			$menuBackdrop.style.setProperty("--top", `${top}px`);
+			$menuBackdrop.style.setProperty("--width", `${width}px`);
+			$menuBackdrop.style.setProperty("--height", `${height}px`);
+			$menuBackdrop.style.opacity = "1";
+		});
+
+		item.addEventListener("mouseleave", () => {
+			$menuBackdrop.style.opacity = "0";
+		});
+	});
+
+	const addHeaderShadow = () => {
+		if (window.scrollY > 0) {
+			$header.classList.add("header__shadow");
+		} else {
+			$header.classList.remove("header__shadow");
+		}
+	};
+
+	window.addEventListener("scroll", () => {
+		addHeaderShadow();
+	});
+
+	const headerSidebar = document.querySelector(".header__sidebar");
+
+	const openMenu = () => {
+		headerSidebar?.classList.toggle("open__menu");
+	};
+
+	document.getElementById("menu")?.addEventListener("click", () => {
+		openMenu();
+	});
+</script>

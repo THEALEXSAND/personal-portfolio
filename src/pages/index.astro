@@ -1,0 +1,53 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Hero from "@/components/Hero.astro";
+import ExperienceSection from "@/components/sections/ExperienceSection.astro";
+
+import { ProjectsSection } from "@/components/sections/ProjectsSection.tsx";
+---
+
+<Layout>
+	<main class="max-w-5xl mx-auto mt-15 px-7">
+		<!-- Seccion de Presentacion y Bienvenida -->
+		<Hero />
+
+		<!-- TODO: Seccion de Experiencia Laboral -->
+		<ExperienceSection />
+
+		<!-- Seccion de mis habilidades de programacion -->
+		<section class="my-10">
+			<h3 class="text-xl text-center font-semibold">Proyectos</h3>
+			<p class="text-[15px] text-center my-2">
+				Estas son algunas de las tecnologías y lenguajes de programación dentro
+				del entorno de desarrollo web, de las cuales tengo conocimientos
+				actualmente.
+			</p>
+
+			<ProjectsSection client:visible />
+		</section>
+
+		<!-- Seccion de mis pasatiempos e intereses (Probablemente se elimine)
+		<section class="hobbies" id="hobbies">
+			<h3 class="text-xl text-center font-semibold">Pasatiempos e intereses</h3>
+			<p>
+				En cuanto a las cosas que me gusta hacer en mis tiempos de descanso,
+				estas son algunas de ellas:
+			</p>
+			<div class="hobbies__container">
+				<article class="hobbie__card">
+					<i class="fa-solid fa-code"></i>
+					<h4>Programación</h4>
+				</article>
+				<article class="hobbie__card">
+					<i class="fa-solid fa-gamepad"></i>
+					<h4>VideoJuegos</h4>
+				</article>
+				<article class="hobbie__card">
+					<i class="fa-solid fa-language"></i>
+					<h4>Idiomas</h4>
+				</article>
+			</div>
+		</section>
+		-->
+	</main>
+</Layout>

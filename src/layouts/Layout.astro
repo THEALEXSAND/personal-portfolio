@@ -1,0 +1,192 @@
+---
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+
+import "@/styles/global.css";
+import "@fontsource-variable/onest";
+---
+
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>
+			Mi Portafolio - Alexander Sandoval - Desarrollador de Sistemas de
+			Informáticos
+		</title>
+		<script
+			src="https://kit.fontawesome.com/518d8c96b7.js"
+			crossorigin="anonymous"></script>
+
+		<link rel="icon" href="img/xd.jpg" type="image/jpg" />
+	</head>
+	<body>
+		<Header />
+		<slot />
+		<Footer />
+	</body>
+</html>
+
+<style is:global>
+	:root {
+		--primaryBGColor: #101010;
+		--primaryColor: #9850d3;
+		--headerHeight: 80px;
+	}
+
+	@theme {
+		--primary-bg-color: #101010;
+		--primary: #9850d3;
+	}
+
+	* {
+		box-sizing: border-box;
+	}
+
+	img {
+		max-width: 100%;
+	}
+
+	body {
+		height: 100vh;
+		margin: 0;
+		padding: 0;
+		background-color: var(--primaryBGColor);
+		background: linear-gradient(
+				90deg,
+				rgb(2, 0, 36) 0%,
+				rgb(57, 27, 84) 50%,
+				rgb(16, 16, 16) 100%
+			)
+			center fixed;
+		color: white;
+		font-family: "Onest Variable", system-ui, sans-serif;
+		font-size: 16px;
+	}
+
+	header {
+		transition:
+			box-shadow 400ms,
+			height 300ms;
+		z-index: 10;
+
+		&.header__shadow {
+			--headerHeight: 65px;
+			backdrop-filter: blur(24px);
+			box-shadow: 0px 5px 20px 1px #00000080;
+		}
+
+		.header__sidebar {
+			width: 250px;
+			height: 100vh;
+			padding: 20px;
+			position: fixed;
+			left: -250px;
+			background-color: var(--primaryBGColor);
+			transition: all 300ms;
+
+			&.open__menu {
+				left: 0;
+			}
+
+			ul {
+				display: flex;
+				flex-direction: column;
+				gap: 20px;
+			}
+		}
+	}
+
+	nav {
+		display: none;
+	}
+
+	@media (width > 600px) {
+		nav {
+			display: initial;
+		}
+
+		.header__sidebar {
+			display: none;
+		}
+
+		#menu {
+			display: none !important;
+		}
+	}
+
+	/* 	
+	.hobbies {
+		width: 85%;
+		margin: 60px auto;
+		font-size: 20px;
+
+		& h3 {
+			font-weight: 600;
+			font-size: 1.3em;
+		}
+
+		& p {
+			margin-bottom: 25px;
+			padding: 0 30px;
+			font-size: 0.7em;
+		}
+
+		& h3,
+		p {
+			text-align: center;
+		}
+
+		.hobbies__container {
+			display: flex;
+			justify-content: space-around;
+			flex-wrap: wrap;
+			gap: 20px;
+		}
+
+		.hobbie__card {
+			width: 200px;
+			padding: 30px;
+			background-color: #151515;
+			text-align: center;
+			box-shadow: 0px 0px 30px 1px #000000cc;
+			font-size: 20px;
+			transition: transform 500ms cubic-bezier(0.075, 0.82, 0.165, 1);
+
+			&:hover {
+				transform: scale(1.1);
+			}
+
+			i {
+				font-size: 3em;
+				color: var(--primaryColor);
+			}
+
+			h4 {
+				margin-top: 20px;
+				margin-bottom: 0;
+				font-weight: 400;
+				font-size: 0.7em;
+			}
+		}
+	}
+*/
+
+	#menu {
+		width: 40px;
+		height: 40px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: #151515;
+		border-radius: 50%;
+		color: white;
+		border: none;
+		cursor: pointer;
+		transition: background-color 300ms;
+
+		&:hover {
+			background-color: #9850d3;
+		}
+	}
+</style>

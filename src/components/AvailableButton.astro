@@ -1,0 +1,32 @@
+<a
+	class="relative flex justify-center items-center rounded-full p-0.5 font-semibold text-sm overflow-hidden transition-transform hover:scale-105"
+	href="https://www.linkedin.com/in/thealexsand/"
+	target="_blank"
+>
+	<div
+		class="absolute -inset-[500%] bg-[conic-gradient(from_90deg_at_50%_50%,_#9850d3,_#391b54,_#9850d3)] spin"
+	>
+	</div>
+
+	<span
+		class="size-full flex justify-center items-center z-1 py-1 px-3 bg-[#200f36] rounded-full"
+	>
+		<slot />
+	</span>
+</a>
+
+<style>
+	.spin {
+		animation: spin 2s linear infinite;
+	}
+
+	@keyframes spin {
+		0% {
+			transform: rotate(0deg);
+		}
+
+		100% {
+			transform: rotate(360deg);
+		}
+	}
+</style>
