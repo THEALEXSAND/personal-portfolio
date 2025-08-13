@@ -1,1 +1,10 @@
 @import "tailwindcss";
+
+@theme {
+    --color-primary-bg-color: #101010;
+    --color-primary: #9850d3;
+}
+
+button {
+    cursor: pointer;
+}
