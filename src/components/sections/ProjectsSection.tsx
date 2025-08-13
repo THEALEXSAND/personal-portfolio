@@ -1,4 +1,5 @@
-import { skillCards, projects } from "@/mocks/data";
+import { TECHNOLOGIES } from "@/mocks/technologies";
+import { projects } from "@/mocks/projects";
 import { SkillCard } from "../SkillCard";
 import { ProjectCard } from "../ProjectCard";
 import { useEffect, useState } from "react";
@@ -14,7 +15,9 @@ export function ProjectsSection() {
 		}
 
 		const newFilteredProjects = projects.filter((project) => {
-			const projectTechs = project.technologies.map((tech) => tech.name);
+			const projectTechs = project.technologies.map(
+				(tech) => tech.name
+			) as string[];
 
 			return selectedSkills.every((selectedSkill) =>
 				projectTechs.includes(selectedSkill)
@@ -45,15 +48,15 @@ export function ProjectsSection() {
 	return (
 		<>
 			<section className="mb-6 flex flex-wrap gap-6 justify-center" id="skills">
-				{skillCards
+				{Object.values(TECHNOLOGIES)
 					.sort((a, b) => a.name.localeCompare(b.name))
-					.map((card) => (
+					.map((tech) => (
 						<SkillCard
-							isSelected={selectedSkills.includes(card.name)}
-							key={card.name}
-							onClick={() => handleSelectSkill(card.name)}
+							isSelected={selectedSkills.includes(tech.name)}
+							key={tech.name}
+							onClick={() => handleSelectSkill(tech.name)}
 						>
-							<card.Icon className="transition-[filter] duration-500" />
+							<tech.Icon className="transition-[filter] duration-500" />
 						</SkillCard>
 					))}
 			</section>
