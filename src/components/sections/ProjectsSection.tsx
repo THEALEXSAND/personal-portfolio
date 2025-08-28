@@ -3,10 +3,15 @@ import { projects } from "@/mocks/projects";
 import { SkillCard } from "../SkillCard";
 import { ProjectCard } from "../ProjectCard";
 import { useEffect, useState } from "react";
+import { ProjectModal } from "../ProjectModal";
+
+type Project = (typeof projects)[0];
 
 export function ProjectsSection() {
 	const [filteredProjects, setFilteredProjects] = useState(projects);
 	const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
+
+	const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
 	useEffect(() => {
 		if (selectedSkills.length === 0) {
@@ -73,15 +78,29 @@ export function ProjectsSection() {
 					filteredProjects.map((project) => (
 						<li key={project.name}>
 							<ProjectCard
-								imageUrl={project.imageUrl}
+								imageUrl={project.images[0]}
 								name={project.name}
 								description={project.description}
 								technologies={project.technologies}
+								featured={project.featured}
+								onClickShowProject={() => setSelectedProject(project)}
 							/>
 						</li>
 					))
 				)}
 			</ul>
+
+			{selectedProject && (
+				<ProjectModal
+					images={selectedProject.images}
+					name={selectedProject.name}
+					description={selectedProject.description}
+					technologies={selectedProject.technologies}
+					features={selectedProject.features || []}
+					featured={selectedProject.featured}
+					onClose={() => setSelectedProject(null)}
+				/>
+			)}
 		</>
 	);
 }

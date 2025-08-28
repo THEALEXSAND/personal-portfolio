@@ -1,5 +1,6 @@
 import type { JSX } from "astro/jsx-runtime";
 import { TechnologyBadgeItem } from "./TecnologyBadgeItem";
+import { StarIcon } from "./icons/StarIcon";
 
 interface Props {
 	imageUrl: string;
@@ -10,6 +11,8 @@ interface Props {
 		Icon: (props: React.SVGProps<SVGSVGElement>) => JSX.Element;
 		colors: { primary: string };
 	}[];
+	featured: boolean;
+	onClickShowProject: () => void;
 }
 
 export function ProjectCard({
@@ -17,17 +20,26 @@ export function ProjectCard({
 	name,
 	description,
 	technologies,
+	featured,
+	onClickShowProject,
 }: Props) {
 	return (
-		<article className="max-w-105 h-full bg-black/25 flex flex-col backdrop-blur-md rounded-md shadow-lg overflow-hidden [&:hover>img]:scale-110">
-			<img
-				className="w-full h-48 object-cover aspect-video transition-transform duration-300"
-				src={imageUrl}
-				alt="No se pudo cargar la imagen"
-				loading="lazy"
-			/>
+		<article className="max-w-105 h-full flex flex-col rounded-md shadow-lg overflow-hidden [&:hover>img]:scale-110 [&:not(*:hover)_li]:[background-color:_transparent_!important]">
+			<div className="relative">
+				<img
+					className="w-full h-48 object-cover aspect-video transition-transform duration-300"
+					src={imageUrl}
+					alt="No se pudo cargar la imagen"
+					loading="lazy"
+				/>
+				{featured && (
+					<span className="absolute top-2 right-2 p-1 rounded-full bg-primary">
+						<StarIcon className="size-5" />
+					</span>
+				)}
+			</div>
 
-			<div className="flex flex-col flex-grow gap-y-4 p-4">
+			<div className="z-1 bg-black/25 backdrop-blur-md  flex flex-col flex-grow gap-y-4 p-4">
 				<h4 className="text-base font-medium">{name}</h4>
 				<p className="text-[13px] font-light opacity-80">{description}</p>
 
@@ -39,7 +51,10 @@ export function ProjectCard({
 					))}
 				</ul>
 
-				<button className="w-full bg-[#9850d3] text-sm font-medium p-2 mt-auto rounded-sm flex gap-x-2 justify-center items-center">
+				<button
+					onClick={onClickShowProject}
+					className="w-full bg-primary text-sm font-medium p-2 mt-auto rounded-sm flex gap-x-2 justify-center items-center"
+				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						width="16"
