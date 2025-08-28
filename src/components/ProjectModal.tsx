@@ -1,31 +1,19 @@
 import { useState } from "react";
 import { TechnologyBadgeItem } from "./TecnologyBadgeItem";
-import type { JSX } from "astro/jsx-runtime";
 import { StarIcon } from "./icons/StarIcon";
+import type { Project } from "@/types";
 
 interface Props {
-	images: string[];
-	name: string;
-	description: string;
-	technologies: {
-		name: string;
-		Icon: (props: React.SVGProps<SVGSVGElement>) => JSX.Element;
-		colors: { primary: string };
-	}[];
-	features: string[];
-	featured: boolean;
+	selectedProject: Project,
 	onClose: () => void;
 }
 
 export function ProjectModal({
-	images,
-	name,
-	description,
-	technologies,
-	features,
-	featured,
+	selectedProject,
 	onClose,
 }: Props) {
+	const { name, description, images, technologies, features } = selectedProject;
+
 	const [currentImageUrl, setCurrentImageUrl] = useState(images[0]);
 
 	return (
@@ -130,9 +118,8 @@ export function ProjectModal({
 							<ul className="flex flex-wrap gap-x-2 items-center [&>li]:[background-color:_transparent_!important]">
 								{technologies.map((tech) => (
 									<TechnologyBadgeItem
+										technology={tech}
 										key={tech.name}
-										Icon={tech.Icon}
-										colors={tech.colors}
 									>
 										{tech.name}
 									</TechnologyBadgeItem>

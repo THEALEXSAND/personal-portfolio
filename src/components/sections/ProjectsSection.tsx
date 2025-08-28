@@ -4,8 +4,7 @@ import { SkillCard } from "../SkillCard";
 import { ProjectCard } from "../ProjectCard";
 import { useEffect, useState } from "react";
 import { ProjectModal } from "../ProjectModal";
-
-type Project = (typeof projects)[0];
+import type { Project } from "@/types";
 
 export function ProjectsSection() {
 	const [filteredProjects, setFilteredProjects] = useState(projects);
@@ -78,11 +77,7 @@ export function ProjectsSection() {
 					filteredProjects.map((project) => (
 						<li key={project.name}>
 							<ProjectCard
-								imageUrl={project.images[0]}
-								name={project.name}
-								description={project.description}
-								technologies={project.technologies}
-								featured={project.featured}
+								project={project}
 								onClickShowProject={() => setSelectedProject(project)}
 							/>
 						</li>
@@ -92,12 +87,7 @@ export function ProjectsSection() {
 
 			{selectedProject && (
 				<ProjectModal
-					images={selectedProject.images}
-					name={selectedProject.name}
-					description={selectedProject.description}
-					technologies={selectedProject.technologies}
-					features={selectedProject.features || []}
-					featured={selectedProject.featured}
+					selectedProject={selectedProject}
 					onClose={() => setSelectedProject(null)}
 				/>
 			)}

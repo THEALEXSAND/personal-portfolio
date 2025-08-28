@@ -1,6 +1,7 @@
+import type { Project } from "@/types";
 import { TECHNOLOGIES } from "./technologies";
 
-export const projects = [
+export const projects: Project[] = [
 	{
 		name: "ECOMODA - ERP",
 		images: [
@@ -35,6 +36,7 @@ export const projects = [
 			TECHNOLOGIES.TAILWIND,
 			TECHNOLOGIES.TYPESCRIPT,
 		],
+		features: [],
 		featured: true,
 		year: 2024,
 	},
@@ -48,6 +50,7 @@ export const projects = [
 			TECHNOLOGIES.TAILWIND,
 			TECHNOLOGIES.JAVASCRIPT,
 		],
+		features: [],
 		featured: false,
 		year: 2024,
 	},
@@ -57,6 +60,7 @@ export const projects = [
 		description:
 			"Backend para el ecosistema de MascoClinic. Una API RESTful robusta que proporciona servicios para la gestión de datos de mascotas, dueños, etc.",
 		technologies: [TECHNOLOGIES.PHP, TECHNOLOGIES.LARAVEL, TECHNOLOGIES.MY_SQL],
+		features: [],
 		featured: false,
 		year: 2023,
 	},
@@ -72,6 +76,7 @@ export const projects = [
 			TECHNOLOGIES.NODE_JS,
 			TECHNOLOGIES.MONGO_DB,
 		],
+		features: [],
 		featured: false,
 		year: 2022,
 	},
