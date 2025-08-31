@@ -5,6 +5,25 @@
     --color-primary: #9850d3;
 }
 
+@utility animate-scroll-fade-in {
+    view-timeline-name: --reveal;
+
+    animation-name: fadeIn;
+    animation-fill-mode: both;
+
+    animation-timeline: --reveal;
+    animation-range: entry 25% cover 50%;
+}
+
+html:has(dialog[open]) {
+    overflow: hidden;
+}
+
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+}
+
 button {
     cursor: pointer;
 }

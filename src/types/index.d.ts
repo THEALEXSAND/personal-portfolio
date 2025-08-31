@@ -1,4 +1,4 @@
-import type { TECHNOLOGIES } from "@/mocks/technologies";
+import { TECHNOLOGIES } from "@/mocks/technologies";
 
 type Technology = typeof TECHNOLOGIES[keyof typeof TECHNOLOGIES];
 
@@ -10,4 +10,5 @@ interface Project {
     features: string[];
     featured: boolean;
     year: number;
+    duration: string;
 }

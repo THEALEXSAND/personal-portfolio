@@ -1,4 +1,4 @@
-import { TechnologyBadgeItem } from "./TecnologyBadgeItem";
+import { TechnologyBadgeItem } from "./TechnologyBadgeItem";
 import { StarIcon } from "./icons/StarIcon";
 import type { Project } from "@/types";
 
@@ -14,7 +14,7 @@ export function ProjectCard({
 	const [imageUrl] = project.images;
 
 	return (
-		<article className="max-w-105 h-full flex flex-col rounded-md shadow-lg overflow-hidden [&:hover>img]:scale-110 [&:not(*:hover)_li]:[background-color:_transparent_!important]">
+		<article className="animate-scroll-fade-in max-w-105 h-full flex flex-col rounded-md shadow-lg overflow-hidden opacity-0 [&:hover>img]:scale-110 [&:not(*:hover)_li]:[background-color:_transparent_!important]">
 			<div className="relative">
 				<img
 					className="w-full h-48 object-cover aspect-video transition-transform duration-300"

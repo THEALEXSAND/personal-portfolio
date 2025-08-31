@@ -28,8 +28,6 @@ export function ProjectsSection() {
 			);
 		});
 
-		console.log({ selectedSkills, newFilteredProjects });
-
 		setFilteredProjects(newFilteredProjects);
 	}, [selectedSkills]);
 
@@ -66,7 +64,7 @@ export function ProjectsSection() {
 			</section>
 
 			<ul
-				className="flex flex-wrap justify-center overflow-x-auto px-4 gap-6"
+				className="flex flex-wrap justify-center px-4 gap-6"
 				id="projects"
 			>
 				{filteredProjects.length === 0 ? (
@@ -85,12 +83,11 @@ export function ProjectsSection() {
 				)}
 			</ul>
 
-			{selectedProject && (
-				<ProjectModal
-					selectedProject={selectedProject}
-					onClose={() => setSelectedProject(null)}
-				/>
-			)}
+			
+			<ProjectModal
+				selectedProject={selectedProject}
+				onClose={() => setSelectedProject(null)}
+			/>
 		</>
 	);
 }

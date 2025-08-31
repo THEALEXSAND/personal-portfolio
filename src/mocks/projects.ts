@@ -5,8 +5,6 @@ export const projects: Project[] = [
 	{
 		name: "ECOMODA - ERP",
 		images: [
-			"screenshots/pome-roses-price-calculator.png",
-			"screenshots/masco-clinic-app.png",
 			"screenshots/animlibrary-project.png",
 		],
 		description:
@@ -25,6 +23,7 @@ export const projects: Project[] = [
 		],
 		featured: true,
 		year: 2025,
+		duration: "4 meses"
 	},
 	{
 		name: "Pome Roses - Price Calculator",
@@ -39,6 +38,7 @@ export const projects: Project[] = [
 		features: [],
 		featured: true,
 		year: 2024,
+		duration: "2 meses"
 	},
 	{
 		name: "MascoClinic APP",
@@ -53,6 +53,7 @@ export const projects: Project[] = [
 		features: [],
 		featured: false,
 		year: 2024,
+		duration: "4 meses"
 	},
 	{
 		name: "MascoClinic API",
@@ -63,6 +64,7 @@ export const projects: Project[] = [
 		features: [],
 		featured: false,
 		year: 2023,
+		duration: "3 meses"
 	},
 	{
 		name: "AnimLibrary",
@@ -79,5 +81,6 @@ export const projects: Project[] = [
 		features: [],
 		featured: false,
 		year: 2022,
+		duration: "6 meses"
 	},
 ];
