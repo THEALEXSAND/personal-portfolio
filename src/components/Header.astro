@@ -1,105 +1,104 @@
-<header
-	id="header"
-	class="h-[var(--headerHeight)] px-7 fixed top-0 left-0 right-0 z-10"
->
-	<div class="max-w-5xl h-full mx-auto flex justify-between items-center">
-		<div>
-			<h1 class="text-2xl text-primary font-medium">AS</h1>
-		</div>
-		<nav>
-			<ul class="flex [&>li>a]:px-4 [&>li>a]:py-2">
-				<li>
-					<a
-						class="text-sm transition-colors duration-300 hover:text-primary"
-						href="/#">Inicio</a
-					>
-				</li>
-				<li>
-					<a
-						class="text-sm transition-colors duration-300 hover:text-primary"
-						href="#about">Sobre mi</a
-					>
-				</li>
-				<li>
-					<a
-						class="text-sm transition-colors duration-300 hover:text-primary"
-						href="#skill">Habilidades</a
-					>
-				</li>
-				<li>
-					<a
-						class="text-sm transition-colors duration-300 hover:text-primary"
-						href="#hobbies">Pasatiempos</a
-					>
-				</li>
-			</ul>
-		</nav>
-		<div>
-			<button id="menu"><i class="fa-solid fa-bars"></i></button>
-		</div>
-	</div>
+---
+const navLinks = [
+	{
+		label: "skills",
+		title: "Habilidades",
+		url: "#skills",
+	},
+	{
+		label: "experience",
+		title: "Experiencia",
+		url: "#experience",
+	},
+	{
+		label: "projects",
+		title: "Proyectos",
+		url: "#projects",
+	},
+];
+---
 
-	<div
-		id="menu-backdrop"
-		class="absolute -z-[1] opacity-0 rounded bg-white/10 backdrop-blur-xs translate-x-[var(--left)] translate-y-[var(--top)] w-[var(--width)] h-[var(--height)] top-0 left-0 transition-all duration-500 ease-in-out"
-	>
-	</div>
-
-	<!-- <aside class="header__sidebar">
-<ul>
-    <li><a href="#">Inicio</a></li>
-    <li><a href="#about">Sobre mi</a></li>
-    <li><a href="#skill">Habilidades</a></li>
-    <li><a href="#hobbies">Pasatiempos</a></li>
-</ul>
-</aside> -->
+<header class="fixed top-0 z-10 w-full flex justify-center items-center mt-2">
+	<nav class="outline-[1.5px] outline-transparent p-2 rounded-full">
+		<ul class="flex [&>li>a]:px-4 [&>li>a]:py-1">
+			{
+				navLinks.map((link) => (
+					<li>
+						<a
+							class="text-sm rounded-full transition-colors duration-300 hover:text-[#d0bcff]"
+							href={link.url}
+							aria-label={link.label}
+						>
+							{link.title}
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</nav>
 </header>
 
 <script>
-	const $header = document.querySelector("header") as HTMLElement;
+	const $sections = document.querySelectorAll("section");
+	const $navItems = document.querySelectorAll("header nav ul li a");
 
-	const $navItems = document.querySelectorAll(
-		"#header li a"
-	) as NodeListOf<HTMLElement>;
-	const $menuBackdrop = document.getElementById("menu-backdrop") as HTMLElement;
-
-	$navItems.forEach((item) => {
-		item.addEventListener("mouseenter", ({ target }) => {
-			const { left, top, width, height } = (
-				target as HTMLElement
-			).getBoundingClientRect();
-
-			$menuBackdrop.style.setProperty("--left", `${left}px`);
-			$menuBackdrop.style.setProperty("--top", `${top}px`);
-			$menuBackdrop.style.setProperty("--width", `${width}px`);
-			$menuBackdrop.style.setProperty("--height", `${height}px`);
-			$menuBackdrop.style.opacity = "1";
+	const callback = (entries: IntersectionObserverEntry[]) => {
+		entries.forEach((entry) => {
+			if (entry.isIntersecting) {
+				$navItems.forEach((item) => {
+					if (item.getAttribute("aria-label") == entry.target.id) {
+						item.classList.add(
+							"text-[#d0bcff]",
+							"bg-primary/15",
+							"font-semibold",
+						);
+						item.classList.remove("text-white");
+					} else {
+						item.classList.remove(
+							"text-[#d0bcff]",
+							"bg-primary/15",
+							"font-semibold",
+						);
+						item.classList.add("text-white");
+					}
+				});
+			}
 		});
+	};
 
-		item.addEventListener("mouseleave", () => {
-			$menuBackdrop.style.opacity = "0";
-		});
+	const observer = new IntersectionObserver(callback, {
+		root: null,
+		rootMargin: "0px",
+		threshold: 0.5,
 	});
 
-	const addHeaderShadow = () => {
-		if (window.scrollY > 0) {
-			$header.classList.add("header__shadow");
+	$sections.forEach((section) => observer.observe(section));
+
+	document.onvisibilitychange = () => {
+		if (document.visibilityState === "hidden") {
+			observer.disconnect();
 		} else {
-			$header.classList.remove("header__shadow");
+			$sections.forEach((section) => {
+				observer.observe(section);
+			});
 		}
 	};
-
-	window.addEventListener("scroll", () => {
-		addHeaderShadow();
-	});
-
-	const headerSidebar = document.querySelector(".header__sidebar");
-
-	const openMenu = () => {
-		headerSidebar?.classList.toggle("open__menu");
-	};
-
-	document.getElementById("menu")?.addEventListener("click", () => {
-		openMenu();
-	});
 </script>
+
+<style>
+	nav {
+		animation: header-appear 1s linear both;
+		animation-timeline: scroll();
+		animation-range: 0 100px;
+	}
+
+	@keyframes header-appear {
+		100% {
+			margin-top: 8px;
+			backdrop-filter: blur(24px);
+			box-shadow: 0px 0px 20px 0px rgba(209, 189, 255, 0.15);
+			background-color: #00000080;
+			outline-color: color-mix(in oklab, #d0bcff 100%, transparent) !important;
+		}
+	}
+</style>
