@@ -37,7 +37,7 @@ export const projects: Project[] = [
 	},
 	{
 		name: "ECOMODA - ERP",
-		images: ["screenshots/animlibrary-project.png"],
+		images: [],
 		description:
 			"Aplicación web para la gestión de diversos departamentos (RRHH, Sucursales, Finanzas, Compra y Venta, Producción, Inventario, etc.) de una empresa de diseño de moda.",
 		technologies: [

@@ -8,17 +8,21 @@ interface Props {
 }
 
 export function ProjectCard({ project, onClickShowProject }: Props) {
-	const [imageUrl] = project.images;
+	const imageUrl: string | undefined = project.images[0];
 
 	return (
 		<article className="animate-scroll-fade-in max-w-105 h-full flex flex-col rounded-md shadow-lg overflow-hidden opacity-0 [&:hover>img]:scale-110 [&:not(*:hover)_li]:bg-[transparent_!important]">
 			<div className="relative">
-				<img
-					className="w-full h-48 object-top-right object-cover aspect-video transition-transform duration-300"
-					src={imageUrl}
-					alt="No se pudo cargar la imagen"
-					loading="lazy"
-				/>
+				{imageUrl ? (
+					<img
+						className="w-full h-48 object-top-right object-cover aspect-video transition-transform duration-300"
+						src={imageUrl}
+						alt="No se pudo cargar la imagen"
+						loading="lazy"
+					/>
+				) : (
+					<ProjectCardSkeleton />
+				)}
 				{project.featured && (
 					<span className="absolute top-2 right-2 p-1 rounded-full bg-primary">
 						<StarIcon className="size-5" />
@@ -62,5 +66,27 @@ export function ProjectCard({ project, onClickShowProject }: Props) {
 				</button>
 			</div>
 		</article>
+	);
+}
+
+function ProjectCardSkeleton() {
+	return (
+		<div className="relative h-44 bg-linear-to-br from-[#181a26] to-[#0d0e15] p-4 flex flex-col">
+			<div className="flex gap-1.5 mb-3">
+				<span className="h-2 w-2 rounded-full bg-white/10"></span>
+				<span className="h-2 w-2 rounded-full bg-white/10"></span>
+				<span className="h-2 w-2 rounded-full bg-white/10"></span>
+			</div>
+			<div className="flex-1 rounded-lg bg-black/30 border border-white/5 p-3 space-y-2">
+				<div className="h-2 w-1/3 rounded bg-white/10"></div>
+				<div className="grid grid-cols-3 gap-2 mt-2">
+					<div className="h-8 rounded bg-white/5"></div>
+					<div className="h-8 rounded bg-white/5"></div>
+					<div className="h-8 rounded bg-white/5"></div>
+				</div>
+				<div className="h-2 w-full rounded bg-white/5 mt-2"></div>
+				<div className="h-2 w-5/6 rounded bg-white/5"></div>
+			</div>
+		</div>
 	);
 }
