@@ -1,5 +1,5 @@
-import { TECHNOLOGIES } from "@/mocks/technologies";
-import { projects } from "@/mocks/projects";
+import { TECHNOLOGIES } from "@/data/technologies-data";
+import { projects } from "@/data/projects-data";
 import { SkillCard } from "../SkillCard";
 import { ProjectCard } from "../ProjectCard";
 import { useEffect, useState } from "react";
@@ -20,11 +20,11 @@ export function ProjectsSection() {
 
 		const newFilteredProjects = projects.filter((project) => {
 			const projectTechs = project.technologies.map(
-				(tech) => tech.name
+				(tech) => tech.name,
 			) as string[];
 
 			return selectedSkills.every((selectedSkill) =>
-				projectTechs.includes(selectedSkill)
+				projectTechs.includes(selectedSkill),
 			);
 		});
 
@@ -34,7 +34,7 @@ export function ProjectsSection() {
 	const handleSelectSkill = (techName: string) => {
 		if (selectedSkills.includes(techName)) {
 			const newSelectedSkills = selectedSkills.filter(
-				(selectedTechName) => selectedTechName !== techName
+				(selectedTechName) => selectedTechName !== techName,
 			);
 
 			setSelectedSkills(newSelectedSkills);
@@ -49,7 +49,10 @@ export function ProjectsSection() {
 
 	return (
 		<>
-			<section className="mb-6 flex flex-wrap gap-6 justify-center" id="skills">
+			<section
+				className="mb-6 flex flex-wrap gap-6 justify-center"
+				id="projects"
+			>
 				{Object.values(TECHNOLOGIES)
 					.sort((a, b) => a.name.localeCompare(b.name))
 					.map((tech) => (
@@ -63,10 +66,7 @@ export function ProjectsSection() {
 					))}
 			</section>
 
-			<ul
-				className="flex flex-wrap justify-center px-4 gap-6"
-				id="projects"
-			>
+			<ul className="flex flex-wrap justify-center px-4 gap-6" id="projects">
 				{filteredProjects.length === 0 ? (
 					<p className="mx-auto my-10 text-sm">
 						No se encontraron proyectos con esas tecnologías...
@@ -83,7 +83,6 @@ export function ProjectsSection() {
 				)}
 			</ul>
 
-			
 			<ProjectModal
 				selectedProject={selectedProject}
 				onClose={() => setSelectedProject(null)}

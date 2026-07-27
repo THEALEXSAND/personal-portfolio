@@ -1,0 +1,120 @@
+---
+import Divider from "../Divider.astro";
+import { TECHNOLOGIES } from "@/data/technologies-data";
+import { experiences } from "@/data/experiences-data";
+import { TechnologyBadgeItem } from "../TechnologyBadgeItem";
+
+const {
+	JAVASCRIPT,
+	TYPESCRIPT,
+	REACT,
+	MY_SQL,
+	TAILWIND,
+	LARAVEL,
+	PHP,
+	NEXT_JS,
+	NODE_JS,
+	POSTGRE_SQL,
+} = TECHNOLOGIES;
+
+const latestExpierience = experiences[0];
+
+const stack = {
+	frontend: [JAVASCRIPT, TYPESCRIPT, REACT],
+	backend: [NODE_JS, PHP, POSTGRE_SQL],
+};
+
+const latestStack = experiences[0].stack;
+---
+
+<section id="skills">
+	<h2 class="flex mb-12 items-center gap-x-4 text-3xl font-semibold">
+		<Divider />
+		Habilidades y Stack
+	</h2>
+
+	<div class="grid grid-cols-12 gap-6">
+		<article class="bg-[#241B45] p-8 rounded-xl col-span-8">
+			<h3 class="mb-6 text-2xl font-semibold">Desarrollo Core</h3>
+
+			<div class="flex flex-col gap-8">
+				<article>
+					<h4 class="mb-3 text-[#d0bcff] text-xs font-medium uppercase">
+						Frontend
+					</h4>
+					<ul class="grid grid-cols-3 gap-3">
+						{
+							stack.frontend.map((tech) => (
+								<li
+									class:list={[
+										"bg-[#171f33] p-4 text-xs font-medium rounded-lg outline-2",
+										tech.styles.outlineColor,
+										tech.styles.backgroundColor,
+									]}
+								>
+									<tech.Icon className="size-4 mb-2" />
+									{tech.name}
+								</li>
+							))
+						}
+					</ul>
+				</article>
+				<article>
+					<h4 class="mb-3 text-[#d0bcff] text-xs font-medium uppercase">
+						Backend
+					</h4>
+					<ul class="grid grid-cols-3 gap-3">
+						{
+							stack.backend.map((tech) => (
+								<li
+									class:list={[
+										"bg-[#171f33] p-4 text-xs font-medium rounded-lg outline-2",
+										tech.styles.outlineColor,
+										tech.styles.backgroundColor,
+									]}
+								>
+									<tech.Icon className="size-4 mb-2" />
+									{tech.name}
+								</li>
+							))
+						}
+					</ul>
+				</article>
+			</div>
+		</article>
+
+		<article
+			class="bg-primary flex flex-col items-center justify-center p-8 rounded-xl col-span-4"
+		>
+			<span class="text-5xl font-bold">+3</span>
+			<span class="text-xl font-semibold">Años de Experiencia</span>
+			<p class="text-center text-sm">
+				Construyendo soluciones escalables y centradas en el usuario.
+			</p>
+		</article>
+
+		<article class="bg-[#241B45] p-8 rounded-xl col-span-4">
+			<h3 class="mb-6 text-2xl font-semibold">Reciente</h3>
+			<div class="relative border-l-2 border-[#d0bcff] pl-6">
+				<p class="text-[#d0bcff] text-xs font-medium">
+					{latestExpierience.date}
+				</p>
+				<p class="font-semibold">{latestExpierience.title}</p>
+				<p class="text-xs opacity-80">{latestExpierience.company}</p>
+				<div class="size-4 absolute -left-2 top-0 bg-[#d0bcff] rounded-full">
+				</div>
+			</div>
+		</article>
+		<article class="bg-[#241B45] p-8 rounded-xl col-span-8">
+			<ul class="h-full flex flex-wrap items-center gap-3">
+				{
+					latestStack.map((tech) => (
+						<TechnologyBadgeItem rounded="xs" technology={tech}>
+							{tech.name}
+						</TechnologyBadgeItem>
+					))
+				}
+			</ul>
+		</article>
+	</div>
+</section>
