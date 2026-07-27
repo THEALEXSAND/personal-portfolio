@@ -40,7 +40,14 @@ export const projects: Project[] = [
 		images: ["screenshots/animlibrary-project.png"],
 		description:
 			"Aplicación web para la gestión de diversos departamentos (RRHH, Sucursales, Finanzas, Compra y Venta, Producción, Inventario, etc.) de una empresa de diseño de moda.",
-		technologies: [NEXT_JS, TAILWIND, TYPESCRIPT, EXPRESS_JS, POSTGRE_SQL],
+		technologies: [
+			NEXT_JS,
+			TAILWIND,
+			TYPESCRIPT,
+			NODE_JS,
+			EXPRESS_JS,
+			POSTGRE_SQL,
+		],
 		features: [
 			"Dashboard interactivo",
 			"Gestión de inventario y contable",
@@ -78,7 +85,7 @@ export const projects: Project[] = [
 		images: ["screenshots/animlibrary-project.png"],
 		description:
 			"Mi primer proyecto. Una aplicación monolitica con catálogo y streaming de animes, OVAS y peliculas.",
-		technologies: [HTML, SASS, JAVASCRIPT, NODE_JS, MONGO_DB],
+		technologies: [HTML, SASS, JAVASCRIPT, NODE_JS, EXPRESS_JS, MONGO_DB],
 		features: [],
 		featured: false,
 		year: 2022,
