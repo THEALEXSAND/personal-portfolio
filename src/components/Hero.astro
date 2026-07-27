@@ -3,11 +3,27 @@ import AvailableButton from "./AvailableButton.astro";
 import EmailIcon from "./icons/EmailIcon.astro";
 import GitHubIcon from "./icons/GitHubIcon.astro";
 import LinkedInIcon from "./icons/LinkedInIcon.astro";
+
+const socialLinks = [
+	{
+		label: "Contáctame",
+		url: "mailto:sandovaltorrealbaalexander@gmail.com",
+		icon: EmailIcon,
+	},
+	{
+		label: "LinkedIn",
+		url: "https://www.linkedin.com/in/thealexsand/",
+		icon: LinkedInIcon,
+	},
+	{
+		label: "GitHub",
+		url: "https://github.com/THEALEXSAND",
+		icon: GitHubIcon,
+	},
+];
 ---
 
-<section
-	class="max-h-[700px] h-[90vh] flex items-center border-b-3 border-primary"
->
+<section class="max-h-175 h-[90vh] flex items-center">
 	<article class="w-full flex justify-between items-center">
 		<div class="font-semibold">
 			<div class="flex items-center gap-4 mb-6">
@@ -16,9 +32,7 @@ import LinkedInIcon from "./icons/LinkedInIcon.astro";
 			</div>
 
 			<h3 class="text-5xl">Soy Alexander</h3>
-			<h4 class="text-4xl my-6 text-white/90">
-				Desarrollador Full-stack de Sistemas Informáticos
-			</h4>
+			<h4 class="text-4xl my-6 text-white/90">Desarrollador Full-stack</h4>
 
 			<article class="font-normal text-white/80 mb-4">
 				<p class="mb-1">
@@ -35,31 +49,21 @@ import LinkedInIcon from "./icons/LinkedInIcon.astro";
 			</article>
 
 			<div class="flex items-start gap-4">
-				<a
-					class="flex items-center gap-x-2 border-2 border-purple-700 rounded-full py-2 px-4 font-medium text-sm hover:bg-purple-700 transition-colors duration-300"
-					href="mailto:sandovaltorrealbaalexander@gmail.com"
-				>
-					Contáctame
-					<EmailIcon />
-				</a>
-
-				<a
-					class="flex items-center gap-x-2 border-2 border-purple-700 rounded-full py-2 px-4 font-medium text-sm hover:bg-purple-700 transition-colors duration-300"
-					href="https://www.linkedin.com/in/thealexsand/"
-					target="_blank"
-				>
-					LinkedIn
-					<LinkedInIcon />
-				</a>
-
-				<a
-					class="flex items-center gap-x-2 border-2 border-purple-700 rounded-full py-2 px-4 font-medium text-sm hover:bg-purple-700 transition-colors duration-300"
-					href="https://github.com/THEALEXSAND"
-					target="_blank"
-				>
-					GitHub
-					<GitHubIcon />
-				</a>
+				{
+					socialLinks.map((link, index) => (
+						<a
+							class:list={[
+								"flex items-center gap-x-2 border-2 border-purple-700 rounded-full py-2 px-4 font-medium text-sm hover:bg-purple-700 transition-colors duration-300",
+								index === 0 && "bg-purple-700",
+							]}
+							href={link.url}
+							target="_blank"
+						>
+							{link.label}
+							{link.icon && <link.icon />}
+						</a>
+					))
+				}
 			</div>
 		</div>
 		<picture class="max-w-62 mx-8 rounded-full overflow-hidden">

@@ -3,21 +3,18 @@ import { StarIcon } from "./icons/StarIcon";
 import type { Project } from "@/types";
 
 interface Props {
-	project: Project,
+	project: Project;
 	onClickShowProject: () => void;
 }
 
-export function ProjectCard({
-	project,
-	onClickShowProject,
-}: Props) {
+export function ProjectCard({ project, onClickShowProject }: Props) {
 	const [imageUrl] = project.images;
 
 	return (
-		<article className="animate-scroll-fade-in max-w-105 h-full flex flex-col rounded-md shadow-lg overflow-hidden opacity-0 [&:hover>img]:scale-110 [&:not(*:hover)_li]:[background-color:_transparent_!important]">
+		<article className="animate-scroll-fade-in max-w-105 h-full flex flex-col rounded-md shadow-lg overflow-hidden opacity-0 [&:hover>img]:scale-110 [&:not(*:hover)_li]:bg-[transparent_!important]">
 			<div className="relative">
 				<img
-					className="w-full h-48 object-cover aspect-video transition-transform duration-300"
+					className="w-full h-48 object-top-right object-cover aspect-video transition-transform duration-300"
 					src={imageUrl}
 					alt="No se pudo cargar la imagen"
 					loading="lazy"
@@ -29,12 +26,14 @@ export function ProjectCard({
 				)}
 			</div>
 
-			<div className="z-1 bg-black/25 backdrop-blur-md  flex flex-col flex-grow gap-y-4 p-4">
+			<div className="z-1 bg-black/25 backdrop-blur-md  flex flex-col grow gap-y-4 p-4">
 				<h4 className="text-base font-medium">{project.name}</h4>
-				<p className="text-[13px] font-light opacity-80">{project.description}</p>
+				<p className="text-[13px] font-light opacity-80">
+					{project.description}
+				</p>
 
 				<ul className="flex flex-wrap items-center gap-2">
-					{project.technologies.map(tech => (
+					{project.technologies.map((tech) => (
 						<TechnologyBadgeItem key={tech.name} technology={tech}>
 							{tech.name}
 						</TechnologyBadgeItem>
