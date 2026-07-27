@@ -19,7 +19,7 @@ const navLinks = [
 ---
 
 <header class="fixed top-0 z-10 w-full flex justify-center items-center mt-2">
-	<nav class="outline-[1.5px] outline-transparent p-2 rounded-full">
+	<nav class="header-nav outline-[1.5px] outline-transparent p-2 rounded-full">
 		<ul class="flex [&>li>a]:px-4 [&>li>a]:py-1">
 			{
 				navLinks.map((link) => (
@@ -86,7 +86,7 @@ const navLinks = [
 </script>
 
 <style>
-	nav {
+	.header-nav {
 		animation: header-appear 1s linear both;
 		animation-timeline: scroll();
 		animation-range: 0 100px;
