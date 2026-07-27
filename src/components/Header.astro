@@ -87,8 +87,10 @@ const navLinks = [
 
 <style>
 	.header-nav {
+		--scroll-timeline: scroll();
+
 		animation: header-appear 1s linear both;
-		animation-timeline: scroll();
+		animation-timeline: var(--scroll-timeline);
 		animation-range: 0 100px;
 	}
 
